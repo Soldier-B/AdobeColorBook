@@ -45,10 +45,22 @@ namespace AdobeColorBook {
         }
         
         internal void Write(ColorBookWriter writer) {
-			writer.Write(this.Name);
+			this.FixCode();
+			writer.Write(this.Name);			
 			writer.Write(Encoding.ASCII.GetBytes(this.Code));
 			writer.Write((BaseColorComponent)this.Components);
         }
+
+		private void FixCode()
+		{
+			this.Code = this.Code ?? "";
+
+			if (this.Code.Length < 6)
+				this.Code = this.Code.PadRight(6 - this.Code.Length, ' ');
+
+			if (this.Code.Length > 6)
+				this.Code = this.Code.Substring(0, 6);
+		}
 
     }
 

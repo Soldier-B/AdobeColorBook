@@ -68,7 +68,6 @@ namespace AdobeColorBook
 
 					if (reader.BaseStream.Position < reader.BaseStream.Length)
 					{
-						// spot/process identifier
 						string spotproc = Encoding.ASCII.GetString(reader.ReadBytes(8));
 						if (spotproc == "spflspot")
 							colorbook.SpotProcess = SpotProcess.Spot;
